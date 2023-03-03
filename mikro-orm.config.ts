@@ -1,4 +1,4 @@
-import { Options } from "@mikro-orm/core";
+import { LoadStrategy, Options } from "@mikro-orm/core";
 import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
 import { BetterSqliteDriver } from "@mikro-orm/better-sqlite";
 import { User } from "./src/entities/user.entity";
@@ -9,9 +9,9 @@ import { SqlHighlighter } from "@mikro-orm/sql-highlighter";
 const config: Options = {
   driver: BetterSqliteDriver,
   dbName: ":memory:",
-  entities: ["*.entity.js"],
-  entitiesTs: [User, Shift, UserShift],
+  entities: [User, Shift, UserShift],
   metadataProvider: TsMorphMetadataProvider,
+  // loadStrategy: LoadStrategy.JOINED,
   allowGlobalContext: true,
   debug: true,
   highlighter: new SqlHighlighter(),

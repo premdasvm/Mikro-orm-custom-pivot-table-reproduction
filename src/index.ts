@@ -21,6 +21,8 @@ async function main() {
   const newUserShift = orm.em.create(UserShift, { id: 1, shift: newShift, user: newUser, coordinate: "das" });
   await orm.em.persist(newUserShift).flush();
 
+  orm.em.clear();
+
   const user = await orm.em.findOne(User, newUser.id, {
     populate: ["shifts"],
     fields: ["*", "shifts.name"],
